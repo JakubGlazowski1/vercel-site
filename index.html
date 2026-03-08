@@ -590,8 +590,8 @@
             <h2 class="form-title">Get In <span class="headline-accent">Touch</span></h2>
             <p class="form-subtitle">Have a project in mind? Let's discuss how we can help bring it to life.</p>
             
-            <form class="contact-form" id="contactForm">
-                <div class="form-row">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaqpnbwg" method="POST">
+    <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" id="firstName" name="firstName" required placeholder="John">
@@ -738,48 +738,7 @@
         }
         
         // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            
-            // Create email body
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const company = formData.get('company');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const message = formData.get('message');
-            
-            const subject = `New Contact Form Submission - ${firstName} ${lastName}`;
-            const body = `
-New contact form submission from D3sign Maker website:
-
-NAME: ${firstName} ${lastName}
-COMPANY: ${company || 'Not provided'}
-EMAIL: ${email}
-PHONE: ${phone}
-
-MESSAGE:
-${message}
-
-FILES ATTACHED: ${uploadedFiles.length > 0 ? uploadedFiles.map(f => f.name).join(', ') : 'None'}
-
----
-Note: Client has ${uploadedFiles.length} file(s) to share. Please follow up via email to receive the files.
-            `.trim();
-            
-            // Open mailto with form data
-            window.location.href = `mailto:d3signmaker@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Show success message
-            const successMessage = document.getElementById('successMessage');
-            successMessage.classList.add('show');
-            
-            // Reset form
-            e.target.reset();
-            uploadedFiles = [];
-            displayUploadedFiles();
+      
             
             // Hide success message after 5 seconds
             setTimeout(() => {
